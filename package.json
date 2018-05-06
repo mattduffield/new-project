@@ -2,6 +2,6 @@
   "devDependencies": {
   },
   "dependencies": {
-    "lodash": "^4.17.4"
+    "lodash": "4.17.4"
   }
 }
