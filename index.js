@@ -1,5 +1,4 @@
 import map from 'lodash/map';
-import each from 'lodash/each';
 
 var nums = [1, 2, 3];
 
