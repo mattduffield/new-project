@@ -1,4 +1,5 @@
-import map from 'lodash/map';
+// import map from 'lodash/map';
+import _ from 'lodash';
 
 var nums = [1, 2, 3];
 
