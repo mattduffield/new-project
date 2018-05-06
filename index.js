@@ -1,9 +1,10 @@
-import map from 'lodash/map';
 
-var nums = [1, 2, 3];
-
-function square(x) {
-    return x*x;
+function init() {
+	// read the package.json file
+	console.log('attempting to read package.json');
+	axios.get('package.json').then(result => {
+		console.log('package.json', result);
+	});
 }
 
-console.log(map(nums, square));
+init();
