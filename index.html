@@ -54,39 +54,16 @@
               }
               resolve(dependencies);
             });
-              
-              // axios.get(pkgUri).then(pkg => {
-              //   // console.log('pkg', pkg.data);
-              //   let {browser, main} = pkg.data;
-              //   if (browser) {
-              //     main = browser;
-              //   }
-              //   // Now load the main entry e.g. https://unpkg.com/lodash@4.17.4/lodash.js
-              //   const mainUri = `https://unpkg.com/${key}@${value}/${main}`;
-              //   const valueUri = `npm:${key}@${value}/${main}`;
-              //   // console.log('valueUri', valueUri);
-              //   dependencies.push({key, value:valueUri});
-              //   if (index === len) {
-              //     // console.log('resolving...');
-              //     resolve(dependencies);            
-              //   }
-              // });
-            // }
           });
         });
       }
       buildDependencyMap().then(dependencies => {
         const map = {};
         console.log('dependencies', dependencies);
-        for (let i = 0; i < dependencies.length; i++) {
-          const d = dependencies[i];
-          // map[`"${d.key}"`] = d.value;
-          console.log(`${d.key} --> ${d.value}`);          
-        }
-        // dependencies.forEach(d => {
-        //   map[d.key] = d.value;
-        //   console.log(`${d.key} --> ${d.value}`);
-        // });
+        dependencies.forEach(d => {
+          map[d.key] = d.value;
+          console.log(`${d.key} --> ${d.value}`);
+        });
         console.log('map', map);
         System.config({
           map
