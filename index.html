@@ -52,7 +52,7 @@
                 const dir = values[i + 1];
                 let {browser, main, name, version} = pkg.data;
                 const minName = `${name}.min.js`;
-                const file = dir.files.find(f => f.path === `/${minName}`);
+                const file = dir.data.files.find(f => f.path === `/${minName}`);
                 if (file) {
                   main = minName;
                 } else if (browser) {
