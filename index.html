@@ -50,11 +50,10 @@
                 axios.get(jsonName).then(jsonResp => {
                   const {status:jsonStatus, data:jsonData} = jsonResp;
                   if (jsonData) {
-                    const minName = `/${name}.min.js`;
-                    const file = jsonData.files.find(f => f.path === minName);
+                    const minName = `${name}.min.js`;
+                    const file = jsonData.files.find(f => f.path === `/${minName}`);
                     if (file) {
-                      const fullName = `https://unpkg.com/${name}@${version}${minName}`;
-                      main = fullName;
+                      main = minName;
                     }
                   } else if (browser) {
                     main = browser;
