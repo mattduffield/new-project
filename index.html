@@ -46,7 +46,7 @@
               uris.push(axios.get(jsonUri));
             }
             return Promise.all(uris).then(values => {
-              for (let i = 0; i < values.length - 1; i += 2;)
+              for (let i = 0; i < values.length - 1; i += 2;) {
               // for (const pkg of values) {
                 const pkg = values[i];
                 const dir = values[i + 1];
