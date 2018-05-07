@@ -44,7 +44,7 @@
               const pkgUri = `https://unpkg.com/${key}@${value}/package.json`;
               uris.push(axios.get(pkgUri));
             }
-            return Promise.all(uri).then(values => {
+            return Promise.all(uris).then(values => {
               for (const pkg of values) {
                 let {browser, main} = pkg.data;
                 if (browser) {
