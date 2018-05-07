@@ -46,11 +46,16 @@
             return Promise.all(uris).then(values => {
               for (const pkg of values) {
                 let {browser, main, name, version} = pkg.data;
-                const minName = `https://unpkg.com/${name}@${version}/${name}.min.js`;
-                axios.get(minName).then(minResp => {
-                  const {status:minStatus, data:minData} = minResp;
-                  if (minData) {
-                    main = minData;
+                const jsonName = `https://unpkg.com/${name}@${version}/?json`;
+                axios.get(jsonName).then(jsonResp => {
+                  const {status:jsonStatus, data:jsonData} = jsonResp;
+                  if (jsonData) {
+                    const minName = `/${name}.min.js`;
+                    const file = jsonData.files.find(f = f.path === minName);
+                    if (file) {
+                      const fullName = `https://unpkg.com/${name}@${version}${minName}`;
+                      main = fullName;
+                    }
                   } else if (browser) {
                     main = browser;
                   }
