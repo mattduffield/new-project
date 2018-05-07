@@ -42,6 +42,8 @@
               // Load manifest /?json e.g. https://unpkg.com/lodash@4.17.4/?json
               const pkgUri = `https://unpkg.com/${key}@${value}/package.json`;
               uris.push(axios.get(pkgUri));
+              const jsonUri = `https://unpkg.com/${key}@${value}/?json`;
+              uris.push(axios.get(jsonUri));
             }
             return Promise.all(uris).then(values => {
               for (const pkg of values) {
