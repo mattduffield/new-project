@@ -46,8 +46,9 @@
               for (const pkg of values) {
                 let {browser, main, name, version} = pkg.data;
                 const minName = `${name}.min.js`;
-                if (pkg.data[minName])) {
-                  main = pkg.data[minName];
+                const min = pkg.data[minName];
+                if (min) {
+                  main = min;
                 } else if (browser) {
                   main = browser;
                 }
