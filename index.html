@@ -15,7 +15,7 @@
       console.log = (function (old_function, logger) { 
       // console.log = function(...text) {
         return function (...text) {
-          old_function(text);
+          old_function(...text);
           const element = document.createElement("div");
           text.forEach(t => {
             const txt = document.createTextNode(`${t}  `);
