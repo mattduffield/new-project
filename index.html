@@ -34,11 +34,8 @@
             const {status, data} = response;
             // console.log('package.json', data);
             // We are interested in the dependencies section.
-            // const len = Object.entries(data.dependencies).length;
-            // let index = 0;
             const uris = [];
             for (const [key, value] of Object.entries(data.dependencies)) {
-              // index++;
               console.log(`${key} ${value}`);
               // Load package.json e.g. https://unpkg.com/lodash@4.17.4/package.json
               const pkgUri = `https://unpkg.com/${key}@${value}/package.json`;
@@ -46,32 +43,16 @@
             }
             return Promise.all(uris).then(values => {
               for (const pkg of values) {
-                let {browser, main} = pkg.data;
+                let {browser, main, name, version} = pkg.data;
                 if (browser) {
                   main = browser;
                 }
                 // Now load the main entry e.g. https://unpkg.com/lodash@4.17.4/lodash.js
-                const mainUri = `https://unpkg.com/${key}@${value}/${main}`;
-                const valueUri = `npm:${key}@${value}/${main}`;
-                // console.log('valueUri', valueUri);
-                dependencies.push({key, value:valueUri});                
+                // const mainUri = `https://unpkg.com/${name}@${version}/${main}`;
+                const valueUri = `npm:${name}@${version}/${main}`;
+                dependencies.push({key:name, value:valueUri});                
               }
-              resolve(dependencies);            
-
-              // let {browser, main} = pkg.data;
-              // if (browser) {
-              //   main = browser;
-              // }
-              // // Now load the main entry e.g. https://unpkg.com/lodash@4.17.4/lodash.js
-              // const mainUri = `https://unpkg.com/${key}@${value}/${main}`;
-              // const valueUri = `npm:${key}@${value}/${main}`;
-              // // console.log('valueUri', valueUri);
-              // dependencies.push({key, value:valueUri});
-              // if (index === len) {
-              //   // console.log('resolving...');
-              //   resolve(dependencies);            
-              // }
-
+              resolve(dependencies);
             });
               
               // axios.get(pkgUri).then(pkg => {
