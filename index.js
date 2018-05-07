@@ -8,4 +8,5 @@ function square(x) {
 }
 
 console.log('square', square(3));
-console.log(map(nums, square));
+// console.log(map(nums, square));
+console.log(_.map(nums, square));
