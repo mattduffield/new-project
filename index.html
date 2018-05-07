@@ -4,10 +4,74 @@
     <title>Empty Web</title>
     <meta charset="utf-8">
     <link href="styles/styles.css" rel="stylesheet" type="text/css">    
-		<script src="lib/axios.js"></script>
   </head>
   <body>
-    <iframe id="mainFrame"></iframe>
-    <script src="lib/packager.js"></script>
+    <h4>Welcome...</h4>
+    <div id="error-log">
+    </div>        
+
+    <script type="text/javascript">
+      console.log = (function (old_function, logger) { 
+        return function (text) {
+          old_function(text);
+          const element = document.createElement("div");
+          const txt = document.createTextNode(text);
+          element.appendChild(txt);
+          logger.appendChild(element);        
+        };
+      } (console.log.bind(console), document.getElementById("error-log")));
+    </script>
+    <script src="lib/axios.js"></script>
+    <script src="https://unpkg.com/systemjs@0.21.3/dist/system.src.js"></script>
+    <script src="lib/systemjs.config.js"></script>
+    <script type="text/javascript">
+      function mapDependency(d) {
+        return `'${d.key}':          '${d.value}',`;  
+      }
+      function buildDependencyMap() {
+        let dependencies = [];
+        return new Promise((resolve, reject) => {
+          // read the package.json file
+          console.log('attempting to read package.json');
+          axios.get('package.json').then(response => {
+            const {status, data} = response;
+            console.log('package.json', data);
+            // We are interested in the dependencies section.
+            const len = Object.entries(data.dependencies).length;
+            let index = 0;
+            for (const [key, value] of Object.entries(data.dependencies)) {
+              index++;
+              console.log(`${key} ${value}`);
+              // Load package.json e.g. https://unpkg.com/lodash@4.17.4/package.json
+              const pkgUri = `https://unpkg.com/${key}@${value}/package.json`;
+              axios.get(pkgUri).then(pkg => {
+                console.log('pkg', pkg.data);
+                const {main} = pkg.data;
+                // Now load the main entry e.g. https://unpkg.com/lodash@4.17.4/lodash.js
+                const mainUri = `https://unpkg.com/${key}@${value}/${main}`;
+                const valueUri = `npm:${key}@${value}/${main}`;
+                console.log('valueUri', valueUri);
+                dependencies.push({key, value:valueUri});
+                if (index === len) {
+                  console.log('resolving...');
+                  resolve(dependencies);            
+                }
+              });
+            }
+          });
+        });
+      }
+      buildDependencyMap().then(response => {
+        const dependencies = response;
+        System.config({
+          // map tells the System loader where to look for things
+          map: {
+            ${dependencies.map(d => mapDependency(d))}
+          }
+        });		
+        System.import('index.js');
+        console.log('ready...');          
+      });      
+    </script>
   </body>
 </html>
