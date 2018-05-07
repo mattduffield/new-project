@@ -18,7 +18,8 @@
           text.forEach(t => {
             let msg = '';
             if (Array.isArray(t)) {
-              msg = `[${t}]`;
+              const arr = t.join(', ');
+              msg = `[${arr}]`;
             } else {
               msg = `${t}  `;
             }
