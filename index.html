@@ -38,7 +38,7 @@
             let index = 0;
             for (const [key, value] of Object.entries(data.dependencies)) {
               index++;
-              // console.log(`${key} ${value}`);
+              console.log(`${key} ${value}`);
               // Load package.json e.g. https://unpkg.com/lodash@4.17.4/package.json
               const pkgUri = `https://unpkg.com/${key}@${value}/package.json`;
               axios.get(pkgUri).then(pkg => {
