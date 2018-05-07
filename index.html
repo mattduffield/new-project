@@ -30,17 +30,49 @@
         return new Promise((resolve, reject) => {
           // read the package.json file
           // console.log('attempting to read package.json');
-          axios.get('package.json').then(response => {
+          return axios.get('package.json').then(response => {
             const {status, data} = response;
             // console.log('package.json', data);
             // We are interested in the dependencies section.
-            const len = Object.entries(data.dependencies).length;
-            let index = 0;
+            // const len = Object.entries(data.dependencies).length;
+            // let index = 0;
+            const uris = [];
             for (const [key, value] of Object.entries(data.dependencies)) {
-              index++;
+              // index++;
               console.log(`${key} ${value}`);
               // Load package.json e.g. https://unpkg.com/lodash@4.17.4/package.json
               const pkgUri = `https://unpkg.com/${key}@${value}/package.json`;
+              uris.push(axios.get(pkgUri));
+            }
+            return Promise.all(uri).then(values => {
+              for (const pkg of values) {
+                let {browser, main} = pkg.data;
+                if (browser) {
+                  main = browser;
+                }
+                // Now load the main entry e.g. https://unpkg.com/lodash@4.17.4/lodash.js
+                const mainUri = `https://unpkg.com/${key}@${value}/${main}`;
+                const valueUri = `npm:${key}@${value}/${main}`;
+                // console.log('valueUri', valueUri);
+                dependencies.push({key, value:valueUri});                
+              }
+              resolve(dependencies);            
+
+              // let {browser, main} = pkg.data;
+              // if (browser) {
+              //   main = browser;
+              // }
+              // // Now load the main entry e.g. https://unpkg.com/lodash@4.17.4/lodash.js
+              // const mainUri = `https://unpkg.com/${key}@${value}/${main}`;
+              // const valueUri = `npm:${key}@${value}/${main}`;
+              // // console.log('valueUri', valueUri);
+              // dependencies.push({key, value:valueUri});
+              // if (index === len) {
+              //   // console.log('resolving...');
+              //   resolve(dependencies);            
+              // }
+
+            });
               axios.get(pkgUri).then(pkg => {
                 // console.log('pkg', pkg.data);
                 let {browser, main} = pkg.data;
