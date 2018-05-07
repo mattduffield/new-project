@@ -11,9 +11,7 @@
     </div>        
 
     <script type="text/javascript">
-      // const logger = document.getElementById("logger");
       console.log = (function (old_function, logger) { 
-      // console.log = function(...text) {
         return function (...text) {
           old_function(...text);
           const element = document.createElement("div");
@@ -38,7 +36,6 @@
         return h;
       }
       function buildDependencyMap() {
-        // let dependencies = [];
         return new Promise((resolve, reject) => {
           // read the package.json file
           return axios.get('package.json').then(response => {
