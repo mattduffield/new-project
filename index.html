@@ -26,14 +26,31 @@
     <script src="https://unpkg.com/systemjs@0.21.3/dist/system.js"></script>
     <script src="lib/systemjs.config.js"></script>
     <script type="text/javascript">
+      function hashCode(s) {
+        if (!s) return 0;
+        var h = 0, l = s.length, i = 0;
+        if ( l > 0 )
+          while (i < l)
+            h = (h << 5) - h + s.charCodeAt(i++) | 0;
+        return h;
+      }
       function buildDependencyMap() {
-        let dependencies = [];
+        // let dependencies = [];
         return new Promise((resolve, reject) => {
           // read the package.json file
-          // console.log('attempting to read package.json');
           return axios.get('package.json').then(response => {
             const {status, data} = response;
-            // console.log('package.json', data);
+            // Compute a hash of the loaded package.json file
+            const hash = hashCode(JSON.stringify(data));
+            // Next, compare the hash of the file with the hash stored
+            const packageHash = localStorage.getItem('packageHash');
+            if (packageHash && packageHash === hash) {
+              // Grab the existing stored map
+              const packageMap = JSON.parse(localStorage.getItem('packageMap'));
+              return resolve(packageMap);
+            } 
+            // Store the has of the package.json fiile
+            localStorage.setItem('packageHash', hashCode(JSON.stringify(data)));
             // We are interested in the dependencies section.
             const uris = [];
             for (const [key, value] of Object.entries(data.dependencies)) {
@@ -46,6 +63,7 @@
               uris.push(axios.get(jsonUri));
             }
             return Promise.all(uris).then(values => {
+              const map = {};
               for (let i = 0; i < values.length - 1; i += 2) {
               // for (const pkg of values) {
                 const pkg = values[i];
@@ -60,23 +78,25 @@
                 }
                 // Now load the main entry e.g. https://unpkg.com/lodash@4.17.4/lodash.js
                 const valueUri = `npm:${name}@${version}/${main}`;
-                dependencies.push({key:name, value:valueUri});                
+                map[name] = valueUri;
+                // dependencies.push({key:name, value:valueUri});                
               }
-              resolve(dependencies);
+              // resolve(dependencies);
+              localStorage.setItem('packageMap', JSON.stringify(map));
+              return resolve(map);
             });
           });
         });
       }
-      buildDependencyMap().then(dependencies => {
-        const map = {};
-        console.log('dependencies', JSON.stringify(dependencies));
-        dependencies.forEach(d => {
-          map[d.key] = d.value;
-          console.log(`${d.key} --> ${d.value}`);
-        });
-        console.log('map', map);
+      buildDependencyMap().then(dependencyMap => {
+        console.log('dependencies', JSON.stringify(dependencyMap));
+        // dependencies.forEach(d => {
+        //   map[d.key] = d.value;
+        //   console.log(`${d.key} --> ${d.value}`);
+        // });
+        console.log('map', dependencyMap);
         System.config({
-          map
+          map: dependencyMap
         });		
         System.import('index.js');
         // console.log('ready...');
