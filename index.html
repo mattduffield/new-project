@@ -16,7 +16,13 @@
           old_function(...text);
           const element = document.createElement("div");
           text.forEach(t => {
-            const txt = document.createTextNode(`${t}  `);
+            let msg = '';
+            if (Array.isArray(t)) {
+              msg = `[${t}]`;
+            } else {
+              msg = `${t}  `;
+            }
+            const txt = document.createTextNode(msg);
             element.appendChild(txt);
           })
           logger.appendChild(element);
