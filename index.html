@@ -12,15 +12,14 @@
   </head>
   <body>
     <h4>Welcome...</h4>
-    <div id="logger">
-    </div>        
+    <pre id="logger">
+    </pre>        
 
     <script type="text/javascript">
       console.log = (function (old_function, logger) { 
         return function (...text) {
           old_function(...text);
-          const element = document.createElement("pre");
-          const code = document.createElement("code");
+          const element = document.createElement("code");
           text.forEach(t => {
             let msg = '';
             if (Array.isArray(t)) {
@@ -32,9 +31,8 @@
               msg = `${t}  `;
             }
             const txt = document.createTextNode(msg);
-            code.appendChild(txt);
+            element.appendChild(txt);
           })
-          element.appendChild(code);
           logger.appendChild(element);
         }
       } (console.log.bind(console), document.getElementById("logger")));
