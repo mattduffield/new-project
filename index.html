@@ -21,7 +21,7 @@
               const arr = t.join(', ');
               msg = `[${arr}]`;
             } else if (typeof(t) === 'object') {
-              msg = `${JSON.stringify(t)}`;
+              msg = `${JSON.stringify(t, null, 2)}`;
             } else {
               msg = `${t}  `;
             }
