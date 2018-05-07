@@ -61,15 +61,15 @@
           });
         });
       }
-      buildDependencyMap().then(response => {
-        console.log('response', response);
+      buildDependencyMap().then(dependencies => {
+        const map = {};
+        dependencies.forEach(d => map[d.key] = d.value);
+        console.log('dependencies', dependencies);
         // const dependencies = response;
-        // System.config({
-        //   // map tells the System loader where to look for things
-        //   map: {
-        //     dependencies.map(d => mapDependency(d))
-        //   }
-        // });		
+        System.config({
+          // map tells the System loader where to look for things
+          map
+        });		
         System.import('index.js');
         console.log('ready...');          
       });      
