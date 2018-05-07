@@ -18,21 +18,12 @@
           old_function(text);
           const element = document.createElement("div");
           text.forEach(t => {
-            const txt = document.createTextNode(t);
+            const txt = document.createTextNode(`${t}&nbsp;&nbsp;`);
             element.appendChild(txt);
           })
           logger.appendChild(element);
         }
       } (console.log.bind(console), document.getElementById("logger")));
-      // console.log = (function (old_function, logger) { 
-      //   return function (text) {
-      //     old_function(text);
-      //     const element = document.createElement("div");
-      //     const txt = document.createTextNode(text);
-      //     element.appendChild(txt);
-      //     logger.appendChild(element);        
-      //   };
-      // } (console.log.bind(console), document.getElementById("error-log")));
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
     <script src="https://unpkg.com/systemjs@0.21.3/dist/system.js"></script>
