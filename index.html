@@ -45,7 +45,10 @@
             return Promise.all(uris).then(values => {
               for (const pkg of values) {
                 let {browser, main, name, version} = pkg.data;
-                if (browser) {
+                const minName = `${name}.min.js`;
+                if (pkg.data[minName])) {
+                  main = pkg.data[minName];
+                } else if (browser) {
                   main = browser;
                 }
                 // Now load the main entry e.g. https://unpkg.com/lodash@4.17.4/lodash.js
