@@ -15,3 +15,35 @@ iframe {
   margin: 0;
   padding: 0;
 }
+
+pre {
+  counter-reset: line-numbering;
+  background: #2c3e50;
+  font-size: 20px;
+  border: 2px solid grey;
+  width: 450px;
+  border-left: 12px solid green;
+  border-radius: 5px;
+  padding: 14px;
+  background-color: #2f2f2f;
+  background-image: -webkit-repeating-linear-gradient(top, #444 0px, #444 22px, #2f2f2f 22px, #2f2f2f 44px);
+  background-image: -moz-repeating-linear-gradient(top, #444 0px, #444 22px, #2f2f2f 22px, #2f2f2f 44px);
+  background-image: -ms-repeating-linear-gradient(top, #444 0px, #444 22px, #2f2f2f 22px, #2f2f2f 44px);
+  background-image: -o-repeating-linear-gradient(top, #444 0px, #444 22px, #2f2f2f 22px, #2f2f2f 44px);
+  background-image: repeating-linear-gradient(top, #444 0px, #444 22px, #2f2f2f 22px, #2f2f2f 44px);
+  padding: 0em 1em;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+pre .line::before {
+  content: counter(line-numbering);
+  counter-increment: line-numbering;
+  padding-right: 1em;
+  /* space after numbers */
+  padding-left: 8px;
+  width: 1.5em;
+  text-align: right;
+  opacity: 0.5;
+  color: white;
+}
