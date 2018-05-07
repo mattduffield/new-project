@@ -14,7 +14,7 @@
       console.log = (function (old_function, logger) { 
         return function (...text) {
           old_function(...text);
-          const element = document.createElement("div");
+          const element = document.createElement("pre");
           text.forEach(t => {
             let msg = '';
             if (Array.isArray(t)) {
