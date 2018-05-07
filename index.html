@@ -60,7 +60,10 @@
       }
       buildDependencyMap().then(dependencies => {
         const map = {};
-        dependencies.forEach(d => map[d.key] = d.value);
+        dependencies.forEach(d => {
+          map[d.key] = d.value;
+          console.log(`${d.key} --> ${d.value}`);
+        });
         console.log('dependencies', dependencies);
         // const dependencies = response;
         System.config({
