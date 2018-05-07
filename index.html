@@ -44,7 +44,7 @@
             const hash = hashCode(JSON.stringify(data));
             // Next, compare the hash of the file with the hash stored
             const packageHash = localStorage.getItem('packageHash');
-            if (packageHash && packageHash === hash) {
+            if (packageHash && packageHash == hash) {
               // Grab the existing stored map
               const packageMap = JSON.parse(localStorage.getItem('packageMap'));
               return resolve(packageMap);
