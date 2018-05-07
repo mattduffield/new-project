@@ -41,7 +41,7 @@
           return axios.get('package.json').then(response => {
             const {status, data} = response;
             // Compute a hash of the loaded package.json file
-            const hash = hashCode(JSON.stringify(data));
+            const hash = hashCode(JSON.stringify(data.dependencies));
             // Next, compare the hash of the file with the hash stored
             const packageHash = localStorage.getItem('packageHash');
             if (packageHash && +packageHash === hash) {
@@ -50,7 +50,7 @@
               return resolve(packageMap);
             } 
             // Store the has of the package.json fiile
-            localStorage.setItem('packageHash', hashCode(JSON.stringify(data)));
+            localStorage.setItem('packageHash', hashCode(JSON.stringify(data.dependencies)));
             // We are interested in the dependencies section.
             const uris = [];
             for (const [key, value] of Object.entries(data.dependencies)) {
