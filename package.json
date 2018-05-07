@@ -17,8 +17,7 @@
     "aurelia-templating-resources": "1.4.0",
     "aurelia-templating-router": "1.1.0",    
     "lodash": "4.17.4",
-    "fetch": "github:github/fetch@^1.0.0",
-    "font-awesome": "npm:font-awesome@4.6.3",
+    "font-awesome": "4.6.3",
     "isomorphic-fetch": "2.2.1"
   }
 }
