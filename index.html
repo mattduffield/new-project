@@ -7,19 +7,27 @@
   </head>
   <body>
     <h4>Welcome...</h4>
-    <div id="error-log">
+    <div id="logger">
     </div>        
 
     <script type="text/javascript">
-      console.log = (function (old_function, logger) { 
-        return function (text) {
-          old_function(text);
-          const element = document.createElement("div");
-          const txt = document.createTextNode(text);
-          element.appendChild(txt);
-          logger.appendChild(element);        
-        };
-      } (console.log.bind(console), document.getElementById("error-log")));
+      const logger = document.getElementById("logger");
+      console.log = function(text) {
+        var element = document.createElement("div");
+        var txt = document.createTextNode(text);
+    
+        element.appendChild(txt);
+        logger.appendChild(element);
+      }    
+      // console.log = (function (old_function, logger) { 
+      //   return function (text) {
+      //     old_function(text);
+      //     const element = document.createElement("div");
+      //     const txt = document.createTextNode(text);
+      //     element.appendChild(txt);
+      //     logger.appendChild(element);        
+      //   };
+      // } (console.log.bind(console), document.getElementById("error-log")));
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
     <script src="https://unpkg.com/systemjs@0.21.3/dist/system.js"></script>
