@@ -46,7 +46,7 @@
             return Promise.all(uris).then(values => {
               for (const pkg of values) {
                 let {browser, main, name, version} = pkg.data;
-                const minName = `https://unpkg.com/${name}@{version}/${name}.min.js`;
+                const minName = `https://unpkg.com/${name}@${version}/${name}.min.js`;
                 axios.get(minName).then(minResp => {
                   const {status:minStatus, data:minData} = minResp;
                   if (minData) {
