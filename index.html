@@ -63,6 +63,7 @@
       }
       buildDependencyMap().then(dependencies => {
         const map = {};
+        console.log('dependencies', dependencies);
         dependencies.forEach(d => {
           map[d.key] = d.value;
           console.log(`${d.key} --> ${d.value}`);
