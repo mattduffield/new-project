@@ -22,7 +22,6 @@
       } (console.log.bind(console), document.getElementById("error-log")));
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
-    <!-- <script src="lib/axios.js"></script> -->
     <script src="https://unpkg.com/systemjs@0.21.3/dist/system.js"></script>
     <script src="lib/systemjs.config.js"></script>
     <script type="text/javascript">
@@ -65,7 +64,6 @@
             return Promise.all(uris).then(values => {
               const map = {};
               for (let i = 0; i < values.length - 1; i += 2) {
-              // for (const pkg of values) {
                 const pkg = values[i];
                 const dir = values[i + 1];
                 let {browser, main, name, version} = pkg.data;
@@ -79,24 +77,18 @@
                 // Now load the main entry e.g. https://unpkg.com/lodash@4.17.4/lodash.js
                 const valueUri = `npm:${name}@${version}/${main}`;
                 map[name] = valueUri;
-                // dependencies.push({key:name, value:valueUri});                
               }
-              // resolve(dependencies);
               localStorage.setItem('packageMap', JSON.stringify(map));
               return resolve(map);
             });
           });
         });
       }
-      buildDependencyMap().then(dependencyMap => {
-        console.log('dependencies', JSON.stringify(dependencyMap));
-        // dependencies.forEach(d => {
-        //   map[d.key] = d.value;
-        //   console.log(`${d.key} --> ${d.value}`);
-        // });
-        console.log('map', dependencyMap);
+      buildDependencyMap().then(map => {
+        console.log('dependencies', JSON.stringify(map));
+        console.log('map', map);
         System.config({
-          map: dependencyMap
+          map
         });		
         System.import('index.js');
         // console.log('ready...');
