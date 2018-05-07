@@ -15,6 +15,7 @@
         return function (...text) {
           old_function(...text);
           const element = document.createElement("pre");
+          const code = document.createElement("code");
           text.forEach(t => {
             let msg = '';
             if (Array.isArray(t)) {
@@ -26,8 +27,9 @@
               msg = `${t}  `;
             }
             const txt = document.createTextNode(msg);
-            element.appendChild(txt);
+            code.appendChild(txt);
           })
+          element.appendChild(code);
           logger.appendChild(element);
         }
       } (console.log.bind(console), document.getElementById("logger")));
