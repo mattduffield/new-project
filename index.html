@@ -41,12 +41,13 @@
             } else {
               msg = `${t}  `;
             }
-            code.innerHTML = msg;
-            // const txt = document.createTextNode(msg);
-            // code.appendChild(txt);
+            // code.innerHTML = msg;
+            const txt = document.createTextNode(msg);
+            code.appendChild(txt);
           });
           pre.appendChild(code);
           logger.appendChild(pre);
+          hljs.highlightBlock(logger);
         }
       } (console.log.bind(console), document.getElementById("logger")));
     </script>
