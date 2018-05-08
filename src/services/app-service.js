@@ -34,6 +34,11 @@ export class AppService {
     hljs.highlightBlock(logger);
   }
   displayInitial() {
-    
+    const map = JSON.parse(localStorage.getItem('packageMap'));
+    const pkg = JSON.parse(localStorage.getItem('packagePackages'));
+    const meta = JSON.parse(localStorage.getItem('packageMeta'));
+    console.log(map);
+    console.log(pkg);
+    console.meta(meta);
   }
 }

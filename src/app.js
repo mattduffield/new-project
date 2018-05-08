@@ -13,6 +13,7 @@ export class App {
   attached() {
     this.compute();
     this.appSvc.setupConsole();
+    this.appSvc.displayInit();
   }
   async compute() {
     const message2 = await this.computeMessage();
