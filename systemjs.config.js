@@ -28,6 +28,8 @@
     },
     packages: {
       src: {
+        format: "amd",
+        main: "main.js",
         defaultExtension: 'js',
         meta: {
           '*.css': {
