@@ -37,8 +37,11 @@ export class AppService {
     const map = JSON.parse(localStorage.getItem('packageMap'));
     const pkg = JSON.parse(localStorage.getItem('packagePackages'));
     const meta = JSON.parse(localStorage.getItem('packageMeta'));
+    console.log('SystemJS Config - Map section');
     console.log(map);
+    console.log('SystemJS Config - Packages section');
     console.log(pkg);
+    console.log('SystemJS Config - Meta section');
     console.log(meta);
   }
 }
