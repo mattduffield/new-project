@@ -1,8 +1,6 @@
 {
   "devDependencies": {
   },
-  "temp": {
-  },
   "dependencies": {
     "aurelia-animator-css": "1.0.0",
     "aurelia-binding": "1.7.1",
