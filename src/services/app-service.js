@@ -25,7 +25,7 @@ export class AppService {
         });
         pre.appendChild(code);
         logger.appendChild(pre);
-        hljs.highlightBlock(logger);
+        // hljs.highlightBlock(logger);
       }
     } (console.log.bind(console), document.getElementById("logger")));
   }
@@ -43,5 +43,9 @@ export class AppService {
     console.log(pkg);
     console.log('SystemJS Config - Meta section');
     console.log(meta);
+    const elements = document.querySelectorAll('pre code');
+    Array.from(elements).forEach(el => {
+      hljs.highlightBlock(el);
+    });
   }
 }
