@@ -100,22 +100,10 @@
                   const jspmMain = jspm.main;
                   const dist = jspm.directories.dist;
                   main = `${dist}/${jspmMain}`;
-                  // 'aurelia-templating-resources': {
-                  //   main: 'aurelia-templating-resources.js',
-                  //   defaultExtension: 'js',
-                  // }
                   packages[jspmMain] = {
                     main: `${jspmMain}.js`,
                     defaultExtension: 'js'
                   };
-                  // 'aurelia-binding': {
-                  //   deps: [
-                  //     "aurelia-logging",
-                  //     "aurelia-metadata",
-                  //     "aurelia-pal",
-                  //     "aurelia-task-queue"
-                  //   ]
-                  // }
                   meta[jspmMain] = {
                     deps: Object.keys(jspm.dependencies)
                   };
