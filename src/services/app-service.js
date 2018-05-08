@@ -39,6 +39,6 @@ export class AppService {
     const meta = JSON.parse(localStorage.getItem('packageMeta'));
     console.log(map);
     console.log(pkg);
-    console.meta(meta);
+    console.log(meta);
   }
 }
