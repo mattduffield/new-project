@@ -83,13 +83,19 @@
               for (let i = 0; i < values.length - 1; i += 2) {
                 const pkg = values[i];
                 const dir = values[i + 1];
-                let {browser, main, name, version} = pkg.data;
-                const minName = `${name}.min.js`;
-                const file = dir.data.files.find(f => f.path === `/${minName}`);
-                if (file) {
-                  main = minName;
-                } else if (browser) {
-                  main = browser;
+                let {browser, main, name, version, jspm} = pkg.data;
+                if (jspm) {
+                  const jspmMain = jspm.main;
+                  const dist = jspm.directories.dist;
+                  main = `${dist}/${jspmMain}`;
+                } else {
+                  const minName = `${name}.min.js`;
+                  const file = dir.data.files.find(f => f.path === `/${minName}`);
+                  if (file) {
+                    main = minName;
+                  } else if (browser) {
+                    main = browser;
+                  }
                 }
                 if (!main) {
                   main = 'index.js';
