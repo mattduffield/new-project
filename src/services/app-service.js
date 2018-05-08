@@ -33,4 +33,7 @@ export class AppService {
     const logger = document.getElementById("logger");
     hljs.highlightBlock(logger);
   }
+  displayInitial() {
+    
+  }
 }

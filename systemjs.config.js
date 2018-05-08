@@ -2,7 +2,7 @@
   System.config({
     baseURL: "src",
     // baseURL: "https://mattduffield.github.io/new-project/",
-    defaultJSExtensions: true,      
+    defaultJSExtensions: true, // This has been deprecated in the latest version. Need to get this working properly in latest     
     transpiler: 'plugin-babel',
     paths: {
       // paths serve as alias
