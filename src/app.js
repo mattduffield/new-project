@@ -11,7 +11,7 @@ export class App {
   }
 
   attached() {
-    this.compute();
+    // this.compute();
     this.appSvc.setupConsole();
     this.appSvc.displayInit();
   }
