@@ -2,6 +2,7 @@
   System.config({
     baseURL: "src",
     // baseURL: "https://mattduffield.github.io/new-project/",
+    defaultJSExtensions: true,    
     transpiler: 'plugin-babel',
     // meta: {
     //   '*.js': {
