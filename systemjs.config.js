@@ -20,9 +20,6 @@
           '*.css': {
             loader: 'plugin-css'
           },
-          // '*.js': {
-          //   loader: 'systemjs-loader.js'
-          // },
         }
       }
     }
