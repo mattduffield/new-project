@@ -14,6 +14,7 @@
     "aurelia-history-browser": "1.0.0",
     "aurelia-loader": "1.0.0",
     "aurelia-loader-default": "1.0.0",
+    "aurelia-logging": "1.4.0",
     "aurelia-logging-console": "1.0.0",
     "aurelia-metadata": "1.0.3",
     "aurelia-pal": "1.7.0",
