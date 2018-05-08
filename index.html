@@ -71,7 +71,8 @@
             if (packageHash && +packageHash === hash) {
               // Grab the existing stored map
               const packageMap = JSON.parse(localStorage.getItem('packageMap'));
-              return resolve(packageMap);
+              const packagePackages = JSON.parse(localStorage.getItem('packagePackages'));
+              return resolve({map:packageMap, packages:packagePackages});
             } 
             // Store the has of the package.json fiile
             localStorage.setItem('packageHash', hashCode(JSON.stringify(data.dependencies)));
@@ -122,6 +123,7 @@
                 map[name] = valueUri;
               }
               localStorage.setItem('packageMap', JSON.stringify(map));
+              localStorage.setItem('packagePackages', JSON.stringify(packages));
               return resolve({map, packages});
             });
           });
@@ -131,6 +133,7 @@
         const {map, packages} = response;
         // console.log('map', map);
         console.log(map);
+        console.log(packages);
         System.config({
           map,
           packages
