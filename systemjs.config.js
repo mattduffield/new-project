@@ -3,7 +3,11 @@
     //baseURL: "src",
     // baseURL: "https://mattduffield.github.io/new-project/",
     transpiler: 'plugin-babel',
-    format: 'amd',
+    meta: {
+      '*': {
+        format: 'amd'
+      }
+    },
     // meta: {
     //   '*.js': {
     //     babelOptions: {
