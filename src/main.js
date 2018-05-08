@@ -8,5 +8,5 @@ export async function configure(aurelia) {
     .developmentLogging();
 
   await aurelia.start();
-  await aurelia.setRoot(PLATFORM.moduleName('app'));
+  await aurelia.setRoot(PLATFORM.moduleName('app.js'));
 }
