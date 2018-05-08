@@ -10,7 +10,7 @@
       hljs.initHighlightingOnLoad();
     </script>
   </head>
-  <body aurelia-app="main">
+  <body aurelia-app="main.js">
     <h4>Welcome...</h4>
     <div id="logger"></div>        
 
@@ -51,14 +51,14 @@
             h = (h << 5) - h + s.charCodeAt(i++) | 0;
         return h;
       }
-      // function patchDefaultLoader(DefaultLoader) {
-      //   // fix issue where the map function was using `System.map[id] = source`
-      //   // https://github.com/aurelia/loader-default/blob/1.0.0/src/index.js#L222
-      //   DefaultLoader.prototype.map = function(id, source) {
-      //     // System.map[id] = source;                 // <--- original
-      //     System.config({ map: { [id]: source } });   // <--- fix
-      //   };
-      // }      
+      function patchDefaultLoader(DefaultLoader) {
+        // fix issue where the map function was using `System.map[id] = source`
+        // https://github.com/aurelia/loader-default/blob/1.0.0/src/index.js#L222
+        DefaultLoader.prototype.map = function(id, source) {
+          // System.map[id] = source;                 // <--- original
+          System.config({ map: { [id]: source } });   // <--- fix
+        };
+      }      
       function buildDependencyMap() {
         return new Promise((resolve, reject) => {
           // read the package.json file
@@ -124,10 +124,9 @@
         System.config({
           map
         });
-        System.import('aurelia-bootstrapper');        
-        // System.import('aurelia-loader-default')
-        //   .then(({ DefaultLoader }) => patchDefaultLoader(DefaultLoader))
-        //   .then(() => System.import('aurelia-bootstrapper'));        
+        System.import('aurelia-loader-default')
+          .then(({ DefaultLoader }) => patchDefaultLoader(DefaultLoader))
+          .then(() => System.import('aurelia-bootstrapper'));        
         // System.import('index.js');
         // console.log('ready...');
       });      
