@@ -1,6 +1,6 @@
 // import map from 'lodash/map';
 import _ from 'lodash';
-import {Application as Koa} from './lib/koa-web';
+import {Application as Koa} from './lib/koa-web/index';
 
 var nums = [1, 2, 3];
 
