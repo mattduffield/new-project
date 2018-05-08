@@ -104,9 +104,11 @@
                     main: `${jspmMain}.js`,
                     defaultExtension: 'js'
                   };
-                  meta[jspmMain] = {
-                    deps: Object.keys(jspm.dependencies)
-                  };
+                  if (jspm.dependencies) {
+                    meta[jspmMain] = {
+                      deps: Object.keys(jspm.dependencies)
+                    };
+                  }
                 } else {
                   const minName = `${name}.min.js`;
                   const file = dir.data.files.find(f => f.path === `/${minName}`);
