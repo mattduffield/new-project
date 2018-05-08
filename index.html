@@ -40,7 +40,7 @@
             } else {
               msg = `${t}  `;
             }
-            const txt = document.createTextNode(msg);
+            const txt = document.createTextNode(msg.trim());
             code.appendChild(txt);
           });
           pre.appendChild(code);
