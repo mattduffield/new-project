@@ -8,10 +8,10 @@ export class App {
   }
 
   attached() {
-    compute();
+    this.compute();
   }
   async compute() {
-    const message2 = await computeMessage();
+    const message2 = await this.computeMessage();
     this.message = message2;
   }
   async computeMessage() {
