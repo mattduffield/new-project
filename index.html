@@ -99,7 +99,8 @@
                 if (jspm) {
                   const jspmMain = jspm.main;
                   const dist = jspm.directories.dist;
-                  main = `${dist}/${jspmMain}`;
+                  // main = `${dist}/${jspmMain}`;
+                  main = `${dist}`;
                   packages[jspmMain] = {
                     main: `${jspmMain}.js`,
                     defaultExtension: 'js'
