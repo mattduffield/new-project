@@ -88,6 +88,7 @@
             }
             return Promise.all(uris).then(values => {
               const map = {};
+              const packages = {};
               for (let i = 0; i < values.length - 1; i += 2) {
                 const pkg = values[i];
                 const dir = values[i + 1];
@@ -96,6 +97,14 @@
                   const jspmMain = jspm.main;
                   const dist = jspm.directories.dist;
                   main = `${dist}/${jspmMain}`;
+                  packages[jspmMain] = {
+                    main: `${jspmMain}.js`,
+                    defaultExtension: 'js'
+                  };
+                  // 'aurelia-templating-resources': {
+                  //   main: 'aurelia-templating-resources.js',
+                  //   defaultExtension: 'js',
+                  // }
                 } else {
                   const minName = `${name}.min.js`;
                   const file = dir.data.files.find(f => f.path === `/${minName}`);
@@ -113,16 +122,18 @@
                 map[name] = valueUri;
               }
               localStorage.setItem('packageMap', JSON.stringify(map));
-              return resolve(map);
+              return resolve({map, packages});
             });
           });
         });
       }
-      buildDependencyMap().then(map => {
+      buildDependencyMap().then(response => {
+        const {map, packages} = response;
         // console.log('map', map);
         console.log(map);
         System.config({
-          map
+          map,
+          packages
         });
         System.import('aurelia-loader-default')
           .then(({ DefaultLoader }) => patchDefaultLoader(DefaultLoader))
