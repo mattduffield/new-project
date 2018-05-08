@@ -28,8 +28,9 @@
       console.log = (function (old_function, logger) { 
         return function (...text) {
           old_function(...text);
-          const element = document.createElement("code");
-          element.classList.add('javascript');
+          const pre = document.createElement("pre");
+          const code = document.createElement("code");
+          code.classList.add('javascript');
           text.forEach(t => {
             let msg = '';
             if (Array.isArray(t)) {
@@ -41,9 +42,10 @@
               msg = `${t}  `;
             }
             const txt = document.createTextNode(msg);
-            element.appendChild(txt);
-          })
-          logger.appendChild(element);
+            code.appendChild(txt);
+          });
+          pre.appendChild(code);
+          logger.appendChild(pre);
         }
       } (console.log.bind(console), document.getElementById("logger")));
     </script>
