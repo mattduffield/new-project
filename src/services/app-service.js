@@ -43,9 +43,5 @@ export class AppService {
     console.log(pkg);
     console.log('SystemJS Config - Meta section');
     console.log(meta);
-    // const elements = document.querySelectorAll('pre code');
-    // Array.from(elements).forEach(el => {
-    //   hljs.highlightBlock(el);
-    // });
   }
 }
