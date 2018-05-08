@@ -1,16 +1,8 @@
 (function (global) {
   System.config({
-    //baseURL: "src",
+    baseURL: "src",
     // baseURL: "https://mattduffield.github.io/new-project/",
     transpiler: 'plugin-babel',
-    meta: {
-      '*.css': {
-        loader: 'plugin-css'
-      },
-      '*.js': {
-        loader: 'systemjs-loader.js'
-      },
-    },
     // meta: {
     //   '*.js': {
     //     babelOptions: {
@@ -33,7 +25,20 @@
       'babel-polyfill':             'npm:babel-polyfill@^6.26.0/dist/polyfill.min.js',
       'bluebird':                   'npm:bluebird@3.5.1/js/browser/bluebird.min.js'
       // 'app': './',
-    }   
+    },
+    packages: {
+      src: {
+        defaultExtension: 'js',
+        meta: {
+          '*.css': {
+            loader: 'plugin-css'
+          },
+          '*.js': {
+            loader: 'systemjs-loader.js'
+          },
+        }
+      }
+    }
   });
 })(this);
 
