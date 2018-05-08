@@ -72,7 +72,8 @@
               // Grab the existing stored map
               const packageMap = JSON.parse(localStorage.getItem('packageMap'));
               const packagePackages = JSON.parse(localStorage.getItem('packagePackages'));
-              return resolve({map:packageMap, packages:packagePackages});
+              const packageMeta = JSON.parse(localStorage.getItem('packageMeta'));
+              return resolve({map:packageMap, packages:packagePackages, meta:packageMeta});
             } 
             // Store the has of the package.json fiile
             localStorage.setItem('packageHash', hashCode(JSON.stringify(data.dependencies)));
@@ -90,6 +91,7 @@
             return Promise.all(uris).then(values => {
               const map = {};
               const packages = {};
+              const meta = {};
               for (let i = 0; i < values.length - 1; i += 2) {
                 const pkg = values[i];
                 const dir = values[i + 1];
@@ -98,14 +100,25 @@
                   const jspmMain = jspm.main;
                   const dist = jspm.directories.dist;
                   main = `${dist}/${jspmMain}`;
-                  packages[jspmMain] = {
-                    main: `${jspmMain}.js`,
-                    defaultExtension: 'js'
-                  };
                   // 'aurelia-templating-resources': {
                   //   main: 'aurelia-templating-resources.js',
                   //   defaultExtension: 'js',
                   // }
+                  packages[jspmMain] = {
+                    main: `${jspmMain}.js`,
+                    defaultExtension: 'js'
+                  };
+                  // 'aurelia-binding': {
+                  //   deps: [
+                  //     "aurelia-logging",
+                  //     "aurelia-metadata",
+                  //     "aurelia-pal",
+                  //     "aurelia-task-queue"
+                  //   ]
+                  // }
+                  meta[jspmMain] = {
+                    deps: Object.keys(jspm.dependencies)
+                  };
                 } else {
                   const minName = `${name}.min.js`;
                   const file = dir.data.files.find(f => f.path === `/${minName}`);
@@ -124,17 +137,20 @@
               }
               localStorage.setItem('packageMap', JSON.stringify(map));
               localStorage.setItem('packagePackages', JSON.stringify(packages));
-              return resolve({map, packages});
+              localStorage.setItem('packageMeta', JSON.stringify(meta));
+              return resolve({map, packages, meta});
             });
           });
         });
       }
       buildDependencyMap().then(response => {
-        const {map, packages} = response;
+        const {map, packages, meta} = response;
         // console.log('map', map);
         console.log(map);
         console.log(packages);
+        console.log(meta);
         System.config({
+          meta,
           map,
           packages
         });
