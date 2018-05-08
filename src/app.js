@@ -12,6 +12,7 @@ export class App {
   }
   async compute() {
     const message2 = await computeMessage();
+    this.message = message2;
   }
   async computeMessage() {
     return new Promise((resolve, reject) => {
