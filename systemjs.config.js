@@ -3,21 +3,21 @@
     //baseURL: "src",
     // baseURL: "https://mattduffield.github.io/new-project/",
     transpiler: 'plugin-babel',
-    meta: {
-      '*.css': {
-        loader: 'plugin-css'
-      },
-      './*.js': {
-        loader: 'systemjs-loader.js'
-      },
-      // '*.js': {
-      //   babelOptions: {
-      //     stage0: true,
-      //     // The following loads the plugin: transform-decorators-legacy
-      //     plugins: ['https://fec.blob.core.windows.net/bundles/babel-plugin-transform-decorators-legacy/decorators-plugin-build.js'],
-      //   }        
-      // },     
-    },
+    // meta: {
+    //   '*.css': {
+    //     loader: 'plugin-css'
+    //   },
+    //   './*.js': {
+    //     loader: 'systemjs-loader.js'
+    //   },
+    //   // '*.js': {
+    //   //   babelOptions: {
+    //   //     stage0: true,
+    //   //     // The following loads the plugin: transform-decorators-legacy
+    //   //     plugins: ['https://fec.blob.core.windows.net/bundles/babel-plugin-transform-decorators-legacy/decorators-plugin-build.js'],
+    //   //   }        
+    //   // },     
+    // },
     paths: {
       // paths serve as alias
       'npm:': 'https://unpkg.com/'
