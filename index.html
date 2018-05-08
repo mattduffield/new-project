@@ -108,9 +108,14 @@
         // console.log('map', map);
         console.log(map);
         System.config({
-          map
+          map,
+          packages: {
+            app: {
+              main: './index.js'
+            }
+          }
         });
-        System.import('index.js');
+        // System.import('index.js');
         // console.log('ready...');
       });      
     </script>
