@@ -73,7 +73,7 @@ function buildDependencyMap() {
               main = minName;
             } else if (minDir) {
               const minName2 = `min/${name}.min.js`;
-              const file2 = minDir.find(f => f.path === `/${minName2}`);
+              const file2 = minDir.files.find(f => f.path === `/${minName2}`);
               if (file2) {
                 main = minName2;
               }
