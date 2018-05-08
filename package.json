@@ -38,6 +38,7 @@
     "aurelia-templating-resources": "1.4.0",
     "aurelia-templating-router": "1.1.0",
     "lodash": "4.17.4",
+    "moment": "2.22.1",
     "isomorphic-fetch": "2.2.1",
     "content-type": "1.0.4",
     "delegates": "1.0.0",
