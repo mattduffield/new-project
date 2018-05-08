@@ -5,16 +5,22 @@ import _ from 'lodash';
 var nums = [1, 2, 3];
 
 function square(x) {
-    return x*x;
+  return x*x;
 }
 
 async function test() {
   return new Promise((resolve, reject) => {
-    return 'hello';
+    resolve('hello');
   });
 }
+async function doWork() {
+  const msg = await test();
+  console.log('message', msg);
+}
+
 
 console.log('square', square(3));
 // console.log(map(nums, square));
 console.log(_.map(nums, square));
 // console.log('Koa', Koa);
+doWork();
