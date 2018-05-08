@@ -33,7 +33,7 @@ export class AppService {
     const logger = document.getElementById("logger");
     hljs.highlightBlock(logger);
   }
-  displayInitial() {
+  displayInit() {
     const map = JSON.parse(localStorage.getItem('packageMap'));
     const pkg = JSON.parse(localStorage.getItem('packagePackages'));
     const meta = JSON.parse(localStorage.getItem('packageMeta'));
