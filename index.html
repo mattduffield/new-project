@@ -30,7 +30,6 @@
           old_function(...text);
           const pre = document.createElement("pre");
           const code = document.createElement("code");
-          // code.classList.add('javascript');
           text.forEach(t => {
             let msg = '';
             if (Array.isArray(t)) {
@@ -41,7 +40,6 @@
             } else {
               msg = `${t}  `;
             }
-            // code.innerHTML = msg;
             const txt = document.createTextNode(msg);
             code.appendChild(txt);
           });
