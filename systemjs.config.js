@@ -24,7 +24,7 @@
       'plugin-css':                 'npm:systemjs-plugin-css@0.1.37/css.js',
       'babel-polyfill':             'npm:babel-polyfill@^6.26.0/dist/polyfill.min.js',
       'bluebird':                   'npm:bluebird@3.5.1/js/browser/bluebird.min.js',
-      'app': './index.js',
+      'app': './',
     }    
   });
 })(this);
