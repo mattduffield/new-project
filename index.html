@@ -41,8 +41,9 @@
             } else {
               msg = `${t}  `;
             }
-            const txt = document.createTextNode(msg);
-            code.appendChild(txt);
+            code.innerHTML = msg;
+            // const txt = document.createTextNode(msg);
+            // code.appendChild(txt);
           });
           pre.appendChild(code);
           logger.appendChild(pre);
