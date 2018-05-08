@@ -3,11 +3,11 @@
   <head>
     <title>Empty Web</title>
     <meta charset="utf-8">
-    <!-- <link href="lib/highlight/styles/monokai-sublime.css" rel="stylesheet" type="text/css"> -->
+    <link href="lib/highlight/styles/monokai-sublime.css" rel="stylesheet" type="text/css">
     <link href="styles/styles.css" rel="stylesheet" type="text/css">    
-    <!-- <script src="lib/highlight/highlight.pack.js"></script> -->
+    <script src="lib/highlight/highlight.pack.js"></script>
     <script>
-      // hljs.initHighlightingOnLoad();
+      hljs.initHighlightingOnLoad();
     </script>
   </head>
   <body>
@@ -20,6 +20,7 @@
         return function (...text) {
           old_function(...text);
           const element = document.createElement("code");
+          element.classList.add('json');
           text.forEach(t => {
             let msg = '';
             if (Array.isArray(t)) {
