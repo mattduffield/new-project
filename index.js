@@ -17,4 +17,4 @@ async function test() {
 console.log('square', square(3));
 // console.log(map(nums, square));
 console.log(_.map(nums, square));
-console.log('Koa', Koa);
+// console.log('Koa', Koa);
