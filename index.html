@@ -9,9 +9,20 @@
     <script>
       hljs.initHighlightingOnLoad();
     </script>
+    <style>
+      html, body {
+        height: 100%;
+      }
+      .loading {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -100px;
+      }    
+    </style>
   </head>
   <body aurelia-app="main">
-    <h1>Loading...</h1>
+    <h1 class="loading">Loading...</h1>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
     <script src="https://unpkg.com/systemjs@0.19.41/dist/system.js"></script>
