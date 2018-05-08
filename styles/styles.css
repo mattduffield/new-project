@@ -15,24 +15,3 @@ iframe {
   margin: 0;
   padding: 0;
 }
-
-pre {
-  counter-reset: line-numbering;
-  background: #2c3e50;
-  padding: 12px 0px 14px 0;
-  width: 600px;
-  color: #ecf0f1;
-  line-height: 100%;
-}
-
-pre .line::before {
-  content: counter(line-numbering);
-  counter-increment: line-numbering;
-  padding-right: 1em;
-  /* space after numbers */
-  padding-left: 8px;
-  width: 1.5em;
-  text-align: right;
-  opacity: 0.5;
-  color: white;
-}
