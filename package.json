@@ -1,4 +1,14 @@
 {
+  "name": "new-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/app.bundle.js",
+  "repository": {
+    "url": "git+ssh://git@github.com/mattduffield/new-project.git",
+    "type": "git"
+  },
+  "author": "Matt Duffield <matt.duffield@gmail.com> (https://frontendcreator.com/)",
+  "license": "MIT",
   "devDependencies": {
   },
   "dependencies": {
