@@ -4,9 +4,12 @@
     // baseURL: "https://mattduffield.github.io/new-project/",
     transpiler: 'plugin-babel',
     meta: {
-      '*': {
-        format: 'amd'
-      }
+      '*.css': {
+        loader: 'plugin-css'
+      },
+      '*.js': {
+        loader: 'systemjs-loader.js'
+      },
     },
     // meta: {
     //   '*.js': {
@@ -30,7 +33,7 @@
       'babel-polyfill':             'npm:babel-polyfill@^6.26.0/dist/polyfill.min.js',
       'bluebird':                   'npm:bluebird@3.5.1/js/browser/bluebird.min.js'
       // 'app': './',
-    }    
+    }   
   });
 })(this);
 
