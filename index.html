@@ -29,7 +29,7 @@
         return function (...text) {
           old_function(...text);
           const element = document.createElement("code");
-          element.classList.add('json');
+          element.classList.add('javascript');
           text.forEach(t => {
             let msg = '';
             if (Array.isArray(t)) {
