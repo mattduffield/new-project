@@ -109,9 +109,11 @@
         console.log(map);
         System.config({
           map
-        });		
-        System.import('index.js');
-        // console.log('ready...');
+        });
+        setTimeout(() => {
+          System.import('index.js');
+          // console.log('ready...');
+        }, 500);
       });      
     </script>
   </body>
