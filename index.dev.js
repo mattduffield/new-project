@@ -51,7 +51,7 @@ function buildDependencyMap() {
           const pkg = values[i];
           const dir = values[i + 1];
           let {browser, main, name, version, jspm} = pkg.data;
-          if (jspm) {
+          if (jspm && jspm.directories) {
             const jspmMain = jspm.main;
             const dist = jspm.directories.dist;
             // main = `${dist}/${jspmMain}`;
