@@ -1,14 +1,18 @@
+import {AppService} from = 'services/app-service';
+
 
 export class App {
+  static inject = [AppService];
 
   message = "This is exciting!";
 
-  constructor() {
-
+  constructor(appSvc) {
+    this.appSvc = appSvc;
   }
 
   attached() {
     this.compute();
+    this.appSvc.setupConsole();
   }
   async compute() {
     const message2 = await this.computeMessage();
@@ -21,5 +25,7 @@ export class App {
       },3000);
     });
   }
+
+  
 }
     
