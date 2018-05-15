@@ -106,6 +106,11 @@ buildDependencyMap().then(response => {
     map,
     packages
   });
+
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js');
+  }
+
   System.import('aurelia-loader-default')
     .then(({ DefaultLoader }) => patchDefaultLoader(DefaultLoader))
     .then(() => System.import('aurelia-bootstrapper'));        
