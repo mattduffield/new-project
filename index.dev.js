@@ -112,3 +112,37 @@ buildDependencyMap().then(response => {
   // System.import('index.js');
   // console.log('ready...');
 });      
+
+
+var oldInstantiate = System[System.constructor.instantiate];
+System[System.constructor.instantiate] = function(key, processAnonRegister) {
+    if (overrideDefaultInstantiate(key) === false) {
+        return oldInstantiate.apply(this, arguments);
+    }
+    return getSource(key).then(transpile).then(function(code) {
+        eval(code);
+        processAnonRegister();
+    });
+};
+// System.import('foo').then(function(exports) {
+//     exports.default; // 42
+// });
+
+function overrideDefaultInstantiate(key) {
+    return true;
+}
+function getSource(key) {
+    return Promise.resolve('export default 42');
+}
+function transpile(code) {
+    return Promise.resolve(`
+        System.register([], function (_export, _context) {
+            return {
+                setters: [],
+                execute: function () {
+                    _export("default", 42);
+                }
+            };
+        });
+    `);
+}
