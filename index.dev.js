@@ -108,7 +108,7 @@ buildDependencyMap().then(response => {
   });
 
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('new-project/service-worker.js');
+    navigator.serviceWorker.register('https://mattduffield.github.io/new-project/service-worker.js');
   }
 
   System.import('aurelia-loader-default')
