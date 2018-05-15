@@ -115,15 +115,15 @@ buildDependencyMap().then(response => {
 
 
 var oldInstantiate = System[System.constructor.instantiate];
-System[System.constructor.instantiate] = function(key, processAnonRegister) {
-    if (overrideDefaultInstantiate(key) === false) {
-        return oldInstantiate.apply(this, arguments);
-    }
-    return getSource(key).then(transpile).then(function(code) {
-        eval(code);
-        processAnonRegister();
-    });
-};
+// System[System.constructor.instantiate] = function(key, processAnonRegister) {
+//     if (overrideDefaultInstantiate(key) === false) {
+//         return oldInstantiate.apply(this, arguments);
+//     }
+//     return getSource(key).then(transpile).then(function(code) {
+//         eval(code);
+//         processAnonRegister();
+//     });
+// };
 // System.import('foo').then(function(exports) {
 //     exports.default; // 42
 // });
