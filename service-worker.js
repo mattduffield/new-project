@@ -64,6 +64,7 @@ self.addEventListener('fetch', event => {
         return caches.open(RUNTIME).then(cache => {
           return fetch(event.request).then(response => {
             if (!event.request.url.startsWith(self.location.origin)) {
+              cosnole.log('service-worker: caching - ', event.request);
               // Put a copy of the response in the runtime cache.
               return cache.put(event.request, response.clone()).then(() => {
                 return response;
