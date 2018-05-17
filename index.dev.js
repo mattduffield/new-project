@@ -106,7 +106,11 @@ function postMessageSetup() {
 function receiveMessage(event) {
   console.log('messaged received: ', event);
   // Do we trust the sender of this message?
-  if (event.origin !== "http://localhost:9000") return;
+  const origins = [
+    'http://localhost:9000',
+    'https://frontendcreator.com'
+  ];
+  if (!origins.includes(event.origin)) return;
 
   const messages = JSON.parse(event.data);
   messages.forEach(msg => {
