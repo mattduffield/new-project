@@ -11,13 +11,15 @@ export class AppService {
     // Do we trust the sender of this message?
     if (event.origin !== "http://localhost:9000") return;
 
-    const dataObj = JSON.parse(event.data);
-    const {operation, key, value} = dataObj;
-    switch(operation) {
-      case 'set': 
-        this.putCache(key, value);
-        break;
-    }
+    const messages = JSON.parse(event.data);
+    messages.forEach(msg => {
+      const {operation, key, value} = msg;
+      switch(operation) {
+        case 'set': 
+          this.putCache(key, value);
+          break;
+      }
+    });
   }
   deleteCache(key) {
     const RUNTIME = 'runtime';
