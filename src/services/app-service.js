@@ -11,7 +11,8 @@ export class AppService {
     // Do we trust the sender of this message?
     if (event.origin !== "http://localhost:9000") return;
 
-    const {operation, key, value} = event.data;
+    const dataObj = JSON.parse(event.data);
+    const {operation, key, value} = dataObj;
     switch(operation) {
       case 'set': 
         this.putCache(key, value);
