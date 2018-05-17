@@ -96,6 +96,61 @@ function buildDependencyMap() {
     });
   });
 }
+//
+// The following functions are used for managing the Cache while 
+// developing the app in dev mode.
+//
+function postMessageSetup() {
+  window.addEventListener("message", receiveMessage, false);    
+}
+function receiveMessage(event) {
+  console.log('messaged received: ', event);
+  // Do we trust the sender of this message?
+  if (event.origin !== "http://localhost:9000") return;
+
+  const messages = JSON.parse(event.data);
+  messages.forEach(msg => {
+    const {operation, repo, key, value, origin} = msg;
+    // Only process messages for the correct repository.
+    if (location.href.includes(repo)) {
+      // console.debug('repo', repo, 'location.href', location.href);
+      switch(operation) {
+        case 'set': 
+          this.putCache(key, value, origin);
+          break;
+      }
+    }
+  });
+}
+function deleteCache(key, origin) {
+  const RUNTIME = 'runtime';
+  caches.open(RUNTIME).then(cache => {
+    const req = new Request(`${origin}/${key}`);
+    console.log('removing old cache for ', req);
+    cache.delete(req).then((response) => {
+      console.log('deleteCache - completed!', response);
+    });      
+  });    
+}
+function putCache(key, value, origin) {
+  // Save to the CACHE API
+  const RUNTIME = 'runtime';
+  caches.open(RUNTIME).then(cache => {
+    const req = new Request(`${origin}/${key}`);
+    const res = new Response(value);
+    console.log(`caching (${key}): ${value}`);
+    // Put a copy of the response in the runtime cache.
+    cache.put(req, res).then(() => {
+      // Completed caching.
+      console.log('putCache - completed!');
+      location.reload();
+    });
+  }); 
+}
+
+
+// Execute the script
+postMessageSetup();
 buildDependencyMap().then(response => {
   const {map, packages, meta} = response;
   console.log(map);
@@ -119,35 +174,3 @@ buildDependencyMap().then(response => {
 });      
 
 
-var oldInstantiate = System[System.constructor.instantiate];
-// System[System.constructor.instantiate] = function(key, processAnonRegister) {
-//     if (overrideDefaultInstantiate(key) === false) {
-//         return oldInstantiate.apply(this, arguments);
-//     }
-//     return getSource(key).then(transpile).then(function(code) {
-//         eval(code);
-//         processAnonRegister();
-//     });
-// };
-// System.import('foo').then(function(exports) {
-//     exports.default; // 42
-// });
-
-function overrideDefaultInstantiate(key) {
-    return true;
-}
-function getSource(key) {
-    return Promise.resolve('export default 42');
-}
-function transpile(code) {
-    return Promise.resolve(`
-        System.register([], function (_export, _context) {
-            return {
-                setters: [],
-                execute: function () {
-                    _export("default", 42);
-                }
-            };
-        });
-    `);
-}

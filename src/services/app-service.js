@@ -1,7 +1,7 @@
 export class AppService {
 
   constructor() {
-    this.postMessageSetup();
+    // this.postMessageSetup();
   }
   postMessageSetup() {
     window.addEventListener("message", this.receiveMessage.bind(this), false);    
