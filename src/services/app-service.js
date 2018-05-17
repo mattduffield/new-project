@@ -26,6 +26,7 @@ export class AppService {
       // Put a copy of the response in the runtime cache.
       return cache.put(req, stringResponse).then(() => {
         // Completed caching.
+        console.log('putCahce - completed!');
       });
     });
     
