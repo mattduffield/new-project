@@ -108,7 +108,7 @@ buildDependencyMap().then(response => {
   });
 
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./service-worker.js');
+    navigator.serviceWorker.register('./service-worker-dev.js');
   }
 
   System.import('aurelia-loader-default')
