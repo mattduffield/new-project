@@ -23,13 +23,16 @@ export class AppService {
     // Save to the CACHE API
     const RUNTIME = 'runtime';
     caches.open(RUNTIME).then(cache => {
-      const stringResponse = new Response(value);
-      console.log(`caching (${req}): ${value}`);
-      // Put a copy of the response in the runtime cache.
-      return cache.put(req, stringResponse).then((e) => {
-        // Completed caching.
-        console.log('putCahce - completed!', e);
-      });
+      console.log('removing old cache for ', req);
+      cache.delete(req).then((response) => {
+        const stringResponse = new Response(value);
+        console.log(`caching (${req}): ${value}`);
+        // Put a copy of the response in the runtime cache.
+        cache.put(req, stringResponse).then(() => {
+          // Completed caching.
+          console.log('putCache - completed!');
+        });
+      });      
     });
     
   }
