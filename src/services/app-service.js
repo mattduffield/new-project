@@ -4,7 +4,7 @@ export class AppService {
     this.postMessageSetup();
   }
   postMessageSetup() {
-    window.addEventListener("message", receiveMessage, false);    
+    window.addEventListener("message", this.receiveMessage.bind(this), false);    
   }
   receiveMessage(event) {
     console.log('messaged received: ', event);
