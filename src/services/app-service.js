@@ -13,7 +13,8 @@ export class AppService {
 
     const messages = JSON.parse(event.data);
     messages.forEach(msg => {
-      const {operation, key, value} = msg;
+      const {operation, repo, key, value} = msg;
+      console.log('repo', repo, 'location.href', location.href);
       switch(operation) {
         case 'set': 
           this.putCache(key, value);
