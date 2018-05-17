@@ -40,6 +40,7 @@ export class AppService {
       cache.put(req, res).then(() => {
         // Completed caching.
         console.log('putCache - completed!');
+        location.reload();
       });
     });
     
