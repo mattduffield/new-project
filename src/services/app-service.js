@@ -1,57 +1,7 @@
 export class AppService {
 
   constructor() {
-    // this.postMessageSetup();
   }
-  postMessageSetup() {
-    window.addEventListener("message", this.receiveMessage.bind(this), false);    
-  }
-  receiveMessage(event) {
-    console.log('messaged received: ', event);
-    // Do we trust the sender of this message?
-    if (event.origin !== "http://localhost:9000") return;
-
-    const messages = JSON.parse(event.data);
-    messages.forEach(msg => {
-      const {operation, repo, key, value} = msg;
-      // Only process messages for the correct repository.
-      if (location.href.includes(repo)) {
-        // console.debug('repo', repo, 'location.href', location.href);
-        switch(operation) {
-          case 'set': 
-            this.putCache(key, value);
-            break;
-        }
-      }
-    });
-  }
-  deleteCache(key) {
-    const RUNTIME = 'runtime';
-    caches.open(RUNTIME).then(cache => {
-      const req = new Request(`https://mattduffield.github.io/${key}`);
-      console.log('removing old cache for ', req);
-      cache.delete(req).then((response) => {
-        console.log('deleteCache - completed!', response);
-      });      
-    });    
-  }
-  putCache(key, value) {
-    // Save to the CACHE API
-    const RUNTIME = 'runtime';
-    caches.open(RUNTIME).then(cache => {
-      const req = new Request(`https://mattduffield.github.io/${key}`);
-      const res = new Response(value);
-      console.log(`caching (${key}): ${value}`);
-      // Put a copy of the response in the runtime cache.
-      cache.put(req, res).then(() => {
-        // Completed caching.
-        console.log('putCache - completed!');
-        location.reload();
-      });
-    });
-    
-  }
-
   setupConsole() {
     console.log = (function (old_function, logger) { 
       return function (...text) {
