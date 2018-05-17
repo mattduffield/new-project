@@ -7,6 +7,7 @@ export class AppService {
     window.addEventListener("message", receiveMessage, false);    
   }
   receiveMessage(event) {
+    console.log('messaged received: ', event);
     // Do we trust the sender of this message?
     if (event.origin !== "http://localhost:9000") return;
 
