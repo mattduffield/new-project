@@ -19,20 +19,28 @@ export class AppService {
         break;
     }
   }
-  putCache(req, value) {
+  deleteCache(key) {
+    const RUNTIME = 'runtime';
+    caches.open(RUNTIME).then(cache => {
+      const req = new Request(`https://mattduffield.github.io/${key}`);
+      console.log('removing old cache for ', req);
+      cache.delete(req).then((response) => {
+        console.log('deleteCache - completed!', response);
+      });      
+    });    
+  }
+  putCache(key, value) {
     // Save to the CACHE API
     const RUNTIME = 'runtime';
     caches.open(RUNTIME).then(cache => {
-      console.log('removing old cache for ', req);
-      cache.delete(req).then((response) => {
-        const stringResponse = new Response(value);
-        console.log(`caching (${req}): ${value}`);
-        // Put a copy of the response in the runtime cache.
-        cache.put(req, stringResponse).then(() => {
-          // Completed caching.
-          console.log('putCache - completed!');
-        });
-      });      
+      const req = new Request(`https://mattduffield.github.io/${key}`);
+      const res = new Response(value);
+      console.log(`caching (${key}): ${value}`);
+      // Put a copy of the response in the runtime cache.
+      cache.put(req, res).then(() => {
+        // Completed caching.
+        console.log('putCache - completed!');
+      });
     });
     
   }
