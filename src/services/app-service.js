@@ -14,11 +14,14 @@ export class AppService {
     const messages = JSON.parse(event.data);
     messages.forEach(msg => {
       const {operation, repo, key, value} = msg;
-      console.log('repo', repo, 'location.href', location.href);
-      switch(operation) {
-        case 'set': 
-          this.putCache(key, value);
-          break;
+      // Only process messages for the correct repository.
+      if (location.href.includes(repo)) {
+        // console.debug('repo', repo, 'location.href', location.href);
+        switch(operation) {
+          case 'set': 
+            this.putCache(key, value);
+            break;
+        }
       }
     });
   }
