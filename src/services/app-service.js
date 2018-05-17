@@ -24,6 +24,7 @@ export class AppService {
     const RUNTIME = 'runtime';
     caches.open(RUNTIME).then(cache => {
       const stringResponse = new Response(value);
+      console.log(`caching (${req}): ${value}`);
       // Put a copy of the response in the runtime cache.
       return cache.put(req, stringResponse).then((e) => {
         // Completed caching.
