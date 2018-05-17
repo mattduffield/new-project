@@ -1,7 +1,33 @@
 export class AppService {
 
   constructor() {
-  
+    this.postMessageSetup();
+  }
+  postMessageSetup() {
+    window.addEventListener("message", receiveMessage, false);    
+  }
+  receiveMessage(event) {
+    // Do we trust the sender of this message?
+    if (event.origin !== "http://localhost:9000") return;
+
+    const {operation, key, value} = event.data;
+    switch(operation) {
+      case 'set': 
+        this.putCache(key, value);
+        break;
+    }
+  }
+  putCache(req, value) {
+    // Save to the CACHE API
+    const RUNTIME = 'runtime';
+    caches.open(RUNTIME).then(cache => {
+      const stringResponse = new Response(value);
+      // Put a copy of the response in the runtime cache.
+      return cache.put(req, stringResponse).then(() => {
+        // Completed caching.
+      });
+    });
+    
   }
 
   setupConsole() {
