@@ -173,8 +173,6 @@ buildDependencyMap().then(response => {
   System.import('aurelia-loader-default')
     .then(({ DefaultLoader }) => patchDefaultLoader(DefaultLoader))
     .then(() => System.import('aurelia-bootstrapper'));        
-  // System.import('index.js');
-  // console.log('ready...');
 });      
 
 
