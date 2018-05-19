@@ -1,5 +1,6 @@
 import {AppService} from 'services/app-service';
 
+// changes here...
 export class App {
   static inject = [AppService];
 
