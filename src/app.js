@@ -20,8 +20,10 @@ export class App {
       ctx.body = 'hello world';
       console.log('started Koa server...');
     });
-    const res = await this.call('/');
-    console.log('reponse', res);
+    const res = await this.call("http://127.0.0.1/world");
+    // t.equal(res.status, 200);    
+    // const res = await this.call('/');
+    console.log('res', res);
     // // this.koa.handler()(new Request('/'));
     // // const response = this.koa.handler()(new Request('/'));
     // this.koa.handler()(new Request('/')).then(response => {
