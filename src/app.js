@@ -19,10 +19,43 @@ export class App {
 
     console.log('starting Koa server...');
 
+
+    const index = `<!doctype html>
+<html>
+  <head>
+    <title>Empty Web</title>
+    <meta charset="utf-8">
+    <link href="lib/highlight/styles/monokai-sublime.css" rel="stylesheet" type="text/css">
+    <link href="styles/styles.css" rel="stylesheet" type="text/css">    
+    <style>
+      html, body {
+        height: 100%;
+      }
+      .loading {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -100px;
+      }    
+    </style>
+  </head>
+  <body aurelia-app="main">
+    <h1 class="loading">Loading...</h1>
+
+    <script src="lib/highlight/highlight.pack.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <script src="https://unpkg.com/systemjs@0.19.41/dist/system.js"></script>
+    <script src="systemjs.config.js"></script>
+    <script src="index.dev.js"></script>
+  </body>
+</html>`;
+
+
     // var app = new Koa;
     this.koa.use((ctx, next) => {
       ctx.status = 200;
-      ctx.body = `<h4>Hello ${ctx.path}</h4>`;
+      // ctx.body = `<h4>Hello ${ctx.path}</h4>`;
+      ctx.body = index;
       ctx.type = "text/html";
     });    
     // this.koa.use(async function(ctx) {
