@@ -1,5 +1,6 @@
 import {AppService} from 'services/app-service';
 import {Application} from '../lib/koa-web/application';
+import {Home} from './home.html';
 
 export class App {
   // static inject = [AppService];
@@ -48,7 +49,7 @@ export class App {
     this.koa.use((ctx, next) => {
       ctx.status = 200;
       // ctx.body = `<h4>Hello ${ctx.path}</h4>`;
-      ctx.body = index;
+      ctx.body = home;
       ctx.type = "text/html";
     });    
     // this.koa.use(async function(ctx) {
