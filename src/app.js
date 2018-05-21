@@ -20,7 +20,7 @@ export class App {
       ctx.body = 'hello world';
       console.log('started Koa server...');
     });
-    const res = await this.call(this.koa, '/');
+    const res = await this.call('/');
     console.log('reponse', res);
     // // this.koa.handler()(new Request('/'));
     // // const response = this.koa.handler()(new Request('/'));
@@ -33,8 +33,8 @@ export class App {
     // this.koa.listen(8080);
     // console.log('Koa server listening on port 8080...');
   }
-  async call(app, url) {
-    const handler = app.handler();
+  async call(url) {
+    const handler = this.koa.handler();
     const req = new Request(url);
     const res = await handler(req);
     return res;
