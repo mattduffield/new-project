@@ -22,6 +22,7 @@ export class App {
     });
     // this.koa.handler()(new Request('/'));
     const response = this.koa.handler()(new Request('/'));
+    console.log('reponse', response);
     response.on('finish', (response) => {
       console.log(response.body);
     });    
