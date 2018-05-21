@@ -3,11 +3,6 @@
     baseURL: "src",
     defaultJSExtensions: true, 
     transpiler: 'plugin-babel',
-    meta: {
-      '*.json': { 
-        loader: 'plugin-json' 
-      }
-    },
     paths: {
       'npm:': 'https://unpkg.com/'
     },
@@ -18,6 +13,9 @@
       'plugin-json':                 'npm:systemjs-plugin-json@0.3.0/json.js',
       'babel-polyfill':             'npm:babel-polyfill@^6.26.0/dist/polyfill.min.js',
       'bluebird':                   'npm:bluebird@3.5.1/js/browser/bluebird.min.js'
+    },
+    meta: { 
+      '*.json': { loader: 'plugin-json' } 
     },
     packages: {
       src: {
