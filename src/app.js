@@ -1,5 +1,5 @@
 import {AppService} from 'services/app-service';
-// import {Koa as Application} from '../lib/koa-web/application';
+import {Koa as Application} from '../lib/koa-web/application';
 
 export class App {
   static inject = [AppService];
