@@ -3,9 +3,10 @@
     baseURL: "src",
     defaultJSExtensions: true, 
     transpiler: 'plugin-babel',
-  meta: {
-    '*.json': { 
-      loader: 'plugin-json' 
+    meta: {
+      '*.json': { 
+        loader: 'plugin-json' 
+      }
     },
     paths: {
       'npm:': 'https://unpkg.com/'
