@@ -15,6 +15,7 @@
       'bluebird':                   'npm:bluebird@3.5.1/js/browser/bluebird.min.js'
     },
     meta: { 
+      defaultExtension: 'js',
       '*.json': { loader: 'plugin-json' } 
     },
     packages: {
