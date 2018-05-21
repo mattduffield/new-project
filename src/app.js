@@ -16,10 +16,17 @@ export class App {
     this.appSvc.displayInit();
 
     console.log('starting Koa server...');
-    this.koa.use(async function(ctx) {
-      ctx.body = 'hello world';
-      console.log('started Koa server...');
-    });
+
+    // var app = new Koa;
+    this.koa.use((ctx, next) => {
+      ctx.status = 200;
+      ctx.body = "Hello " + ctx.path;
+      ctx.type = "text/html";
+    });    
+    // this.koa.use(async function(ctx) {
+    //   ctx.body = 'hello world';
+    //   console.log('started Koa server...');
+    // });
     const res = await this.call("http://127.0.0.1/world");
     // t.equal(res.status, 200);    
     // const res = await this.call('/');
