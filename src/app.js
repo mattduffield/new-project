@@ -22,7 +22,7 @@ export class App {
     // var app = new Koa;
     this.koa.use((ctx, next) => {
       ctx.status = 200;
-      ctx.body = "Hello " + ctx.path;
+      ctx.body = `<h4>Hello ${ctx.path}</h4>`;
       ctx.type = "text/html";
     });    
     // this.koa.use(async function(ctx) {
