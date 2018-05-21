@@ -20,7 +20,7 @@ export class App {
       ctx.body = 'hello world';
       console.log('started Koa server...');
     });
-    const res = await call(this.koa, '/');
+    const res = await this.call(this.koa, '/');
     console.log('reponse', res);
     // // this.koa.handler()(new Request('/'));
     // // const response = this.koa.handler()(new Request('/'));
