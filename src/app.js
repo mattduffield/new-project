@@ -29,9 +29,7 @@ export class App {
     // });
     const res = await this.call("http://127.0.0.1/world");
     console.log('res.status', res.status);
-    console.log('res.body', res.body);
-    // t.equal(res.status, 200);    
-    // const res = await this.call('/');
+    console.log('res.type', res.type);
     console.log('res', res);
   }
   async call(url) {
