@@ -1,7 +1,7 @@
 (function (global) {
   System.config({
     baseURL: "src",
-    // defaultJSExtensions: true, 
+    defaultJSExtensions: true, 
     transpiler: 'plugin-babel',
     paths: {
       'npm:': 'https://unpkg.com/'
