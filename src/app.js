@@ -1,14 +1,14 @@
 import {AppService} from 'services/app-service';
-import {Koa as Application} from '../lib/koa-web/application';
+import {Application} from '../lib/koa-web/application';
 
 export class App {
   // static inject = [AppService];
-  static inject = [AppService, Koa];
+  static inject = [AppService, Application];
 
   // constructor(appSvc) {
-  constructor(appSvc, Koa) {
+  constructor(appSvc, koa) {
     this.appSvc = appSvc;
-    this.Koa = Koa;
+    this.koa = koa;
   }
 
   attached() {
@@ -16,11 +16,11 @@ export class App {
     this.appSvc.displayInit();
 
     console.log('starting Koa server...');
-    this.Koa.use(async function(ctx) {
+    this.koa.use(async function(ctx) {
       ctx.body = 'hello world';
       console.log('started Koa server...');
     });
-    this.Koa.listen(8080);
+    this.koa.listen(8080);
     console.log('Koa server listening on port 8080...');
   }
   
