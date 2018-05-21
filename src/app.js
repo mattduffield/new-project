@@ -9,7 +9,7 @@ export class App {
   constructor(appSvc, koa) {
     this.appSvc = appSvc;
     this.koa = koa;
-    console.log('homePage', homePage);
+    // console.log('homePage', homePage);
   }
 
   async attached() {
@@ -23,7 +23,7 @@ export class App {
       // ctx.body = `<h4>Hello ${ctx.path}</h4>`;
       ctx.body = homePage;
       ctx.type = "text/html";
-    //   console.log('started Koa server...');
+      console.log('started Koa server...');
     });    
     // this.koa.use(async function(ctx) {
     //   ctx.body = 'hello world';
