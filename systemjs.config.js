@@ -18,6 +18,11 @@
       '*.json': { loader: 'plugin-json' } 
     },
     packages: {
+      npm: {
+        meta: { 
+          '*.json': { loader: 'plugin-json' } 
+        },        
+      },
       src: {
         defaultExtension: 'js',
         meta: {
