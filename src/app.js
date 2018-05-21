@@ -1,6 +1,6 @@
 import {AppService} from 'services/app-service';
 import {Application} from '../lib/koa-web/application';
-import homePage from '../index.html!text';
+import homePage from '../index.dev.html!text';
 
 
 export class App {
