@@ -2,7 +2,6 @@
   System.config({
     baseURL: "src",
     defaultJSExtensions: true, 
-    pluginFirst: true,
     transpiler: 'plugin-babel',
     paths: {
       'npm:': 'https://unpkg.com/'
