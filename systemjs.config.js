@@ -18,7 +18,7 @@
       '*.json': { loader: 'plugin-json' } 
     },
     packages: {
-      'src/': {
+      '/': {
         defaultExtension: 'js',
         meta: {
           '*.css': {
