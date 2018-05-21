@@ -4,13 +4,13 @@ html, body {
 }
 
 iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
+  /* position: absolute; */
+  /* top: 0; */
+  /* left: 0; */
+  height: 50%;
   width: 100%;
 
-  border: none;
+  /* border: none; */
   margin: 0;
   padding: 0;
 }
