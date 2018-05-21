@@ -1,14 +1,14 @@
 import {AppService} from 'services/app-service';
-import {Koa as Application} from '../lib/koa-web/application';
+// import {Koa as Application} from '../lib/koa-web/application';
 
 export class App {
-  // static inject = [AppService];
-  static inject = [AppService, Koa];
+  static inject = [AppService];
+  // static inject = [AppService, Koa];
 
-  // constructor(appSvc) {
-  constructor(appSvc, Koa) {
+  constructor(appSvc) {
+  // constructor(appSvc, Koa) {
     this.appSvc = appSvc;
-    this.Koa = Koa;
+    // this.Koa = Koa;
   }
 
   attached() {
