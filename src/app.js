@@ -13,6 +13,7 @@ export class App {
   constructor(appSvc, koa) {
     this.appSvc = appSvc;
     this.koa = koa;
+    console.log('homePage', homePage);
   }
 
   async attached() {
