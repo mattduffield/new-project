@@ -38,6 +38,9 @@ export class App {
   }
   async call(url) {
     const handler = this.koa.handler();
+    const init = {
+      origin: location.origin
+    };
     const req = new Request(url);
     console.log(`
       Url: ${req.url}
