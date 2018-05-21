@@ -20,7 +20,7 @@ export class App {
       ctx.body = 'hello world';
       console.log('started Koa server...');
     });
-    this.koa.handler()(new Request('/'));
+    console.log(this.koa.handler()(new Request('/')));
     // this.koa.listen(8080);
     // console.log('Koa server listening on port 8080...');
   }
