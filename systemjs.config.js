@@ -1,7 +1,7 @@
 (function (global) {
   System.config({
     baseURL: "src",
-    defaultJSExtensions: true, 
+    // defaultJSExtensions: true, 
     transpiler: 'plugin-babel',
     paths: {
       'npm:': 'https://unpkg.com/'
@@ -18,12 +18,10 @@
       '*.json': { loader: 'plugin-json' } 
     },
     packages: {
-      npm: {
-        defaultExtension: 'js',
-        meta: { 
-          '*.json': { loader: 'plugin-json' } 
-        },        
-      },
+      defaultExtension: 'js',
+      meta: { 
+        '*.json': { loader: 'plugin-json' } 
+      },        
       src: {
         defaultExtension: 'js',
         meta: {
