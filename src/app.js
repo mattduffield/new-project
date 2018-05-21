@@ -5,6 +5,8 @@ export class App {
   // static inject = [AppService];
   static inject = [AppService, Application];
 
+  html = '';
+
   // constructor(appSvc) {
   constructor(appSvc, koa) {
     this.appSvc = appSvc;
@@ -32,6 +34,7 @@ export class App {
     console.log('res.status: ', res.status);
     console.log('res.type: ', res.type);
     console.log('res.body: ', body);
+    this.html = body;
   }
   async call(url) {
     const handler = this.koa.handler();
