@@ -19,6 +19,7 @@
     },
     packages: {
       npm: {
+        defaultExtension: 'js',
         meta: { 
           '*.json': { loader: 'plugin-json' } 
         },        
