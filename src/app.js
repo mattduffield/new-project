@@ -39,6 +39,19 @@ export class App {
   async call(url) {
     const handler = this.koa.handler();
     const req = new Request(url);
+    console.log(`
+      URL: ${req.URL}
+      Method: ${req.method}
+      Protocol: ${req.protocol}
+      Origin: ${req.origin}
+      Host: ${req.host}
+      Hostname: ${req.hostname}
+      Url: ${req.url}
+      Path: ${req.path}
+      Href: ${req.href}
+      QueryString: ${req.querystring}
+      Search: ${req.search}
+    `);
     const res = await handler(req);
     return res;
   }
