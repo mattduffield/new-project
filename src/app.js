@@ -28,8 +28,9 @@ export class App {
     //   console.log('started Koa server...');
     // });
     const res = await this.call("http://127.0.0.1/world");
-    console.log('res.status', res.status);
-    console.log('res.type', res.type);
+    console.log('res.status: ', res.status);
+    console.log('res.type: ', res.type);
+    console.log('res.body: ', res.body);
     console.log('res', res);
   }
   async call(url) {
