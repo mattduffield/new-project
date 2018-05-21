@@ -28,19 +28,10 @@ export class App {
     //   console.log('started Koa server...');
     // });
     const res = await this.call("http://127.0.0.1/world");
+    console.log('res.status', res.status);
     // t.equal(res.status, 200);    
     // const res = await this.call('/');
     console.log('res', res);
-    // // this.koa.handler()(new Request('/'));
-    // // const response = this.koa.handler()(new Request('/'));
-    // this.koa.handler()(new Request('/')).then(response => {
-    //   console.log('reponse', response);
-    // });
-    // response.on('finish', (response) => {
-    //   console.log(response.body);
-    // });    
-    // this.koa.listen(8080);
-    // console.log('Koa server listening on port 8080...');
   }
   async call(url) {
     const handler = this.koa.handler();
