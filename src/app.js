@@ -11,7 +11,7 @@ export class App {
     this.koa = koa;
   }
 
-  attached() {
+  async attached() {
     this.appSvc.setupConsole();
     this.appSvc.displayInit();
 
@@ -20,16 +20,24 @@ export class App {
       ctx.body = 'hello world';
       console.log('started Koa server...');
     });
-    // this.koa.handler()(new Request('/'));
-    // const response = this.koa.handler()(new Request('/'));
-    this.koa.handler()(new Request('/')).then(response => {
-      console.log('reponse', response);
-    });
-    response.on('finish', (response) => {
-      console.log(response.body);
-    });    
+    const res = await call(this.koa, '/');
+    console.log('reponse', res);
+    // // this.koa.handler()(new Request('/'));
+    // // const response = this.koa.handler()(new Request('/'));
+    // this.koa.handler()(new Request('/')).then(response => {
+    //   console.log('reponse', response);
+    // });
+    // response.on('finish', (response) => {
+    //   console.log(response.body);
+    // });    
     // this.koa.listen(8080);
     // console.log('Koa server listening on port 8080...');
+  }
+  async call(app, url) {
+    const handler = app.handler();
+    const req = new Request(url);
+    const res = await handler(req);
+    return res;
   }
   
 }
