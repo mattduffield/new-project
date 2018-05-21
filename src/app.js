@@ -23,9 +23,8 @@ export class App {
     const index = `<!doctype html>
 <html>
   <head>
-    <title>Empty Web</title>
+    <title>Koa Web</title>
     <meta charset="utf-8">
-    <link href="lib/highlight/styles/monokai-sublime.css" rel="stylesheet" type="text/css">
     <link href="styles/styles.css" rel="stylesheet" type="text/css">    
     <style>
       html, body {
@@ -39,14 +38,8 @@ export class App {
       }    
     </style>
   </head>
-  <body aurelia-app="main">
+  <body>
     <h1 class="loading">Loading...</h1>
-
-    <script src="lib/highlight/highlight.pack.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
-    <script src="https://unpkg.com/systemjs@0.19.41/dist/system.js"></script>
-    <script src="systemjs.config.js"></script>
-    <script src="index.dev.js"></script>
   </body>
 </html>`;
 
