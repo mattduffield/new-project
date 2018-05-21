@@ -21,8 +21,10 @@ export class App {
       console.log('started Koa server...');
     });
     // this.koa.handler()(new Request('/'));
-    const response = this.koa.handler()(new Request('/'));
-    console.log('reponse', response);
+    // const response = this.koa.handler()(new Request('/'));
+    this.koa.handler()(new Request('/')).then(response => {
+      console.log('reponse', response);
+    });
     response.on('finish', (response) => {
       console.log(response.body);
     });    
