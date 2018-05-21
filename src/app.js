@@ -39,8 +39,8 @@ export class App {
   async call(url) {
     const handler = this.koa.handler();
     const reqUrl = new URL(url);
-    console.log('reqUrl', reqUrl, reqUrl.url);
-    const req = new Request(reqUrl);
+    console.log('reqUrl', reqUrl);
+    const req = new Request(url);
     // console.log(`
     //   Url: ${req.url}
     //   Method: ${req.method}
