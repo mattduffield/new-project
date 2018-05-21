@@ -10,6 +10,7 @@
       'systemjs-babel-build':       'npm:systemjs-plugin-babel@0.0.25/systemjs-babel-browser.js',
       'plugin-css':                 'npm:systemjs-plugin-css@0.1.37/css.js',
       'plugin-json':                'npm:systemjs-plugin-json@0.3.0/json.js',
+      'plugin-text':                'npm:systemjs-plugin-text@0.0.11/text.js',
       'babel-polyfill':             'npm:babel-polyfill@^6.26.0/dist/polyfill.min.js',
       'bluebird':                   'npm:bluebird@3.5.1/js/browser/bluebird.min.js'
     },
