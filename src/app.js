@@ -40,13 +40,12 @@ export class App {
     const handler = this.koa.handler();
     const req = new Request(url);
     console.log(`
-      URL: ${req.URL}
+      Url: ${req.url}
       Method: ${req.method}
       Protocol: ${req.protocol}
       Origin: ${req.origin}
       Host: ${req.host}
       Hostname: ${req.hostname}
-      Url: ${req.url}
       Path: ${req.path}
       Href: ${req.href}
       QueryString: ${req.querystring}
