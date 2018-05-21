@@ -29,7 +29,7 @@ export class App {
     //   ctx.body = 'hello world';
     //   console.log('started Koa server...');
     // });
-    const res = await this.call("http://127.0.0.1/world");
+    const res = await this.call("http://mattduffield.github.io/new-project/world");
     const body = await res.text();
     console.log('res.status: ', res.status);
     // console.log('res.type: ', res.type);
