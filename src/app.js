@@ -41,7 +41,7 @@ export class App {
     const init = {
       origin: location.origin
     };
-    const reqUrl = new new URL(url);
+    const reqUrl = new URL(url);
     console.log('reqUrl', reqUrl);
     const req = new Request(reqUrl, init);
     console.log(`
