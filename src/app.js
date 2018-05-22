@@ -14,7 +14,7 @@ export class App {
 
   async attached() {
     this.appSvc.setupConsole();
-    // this.appSvc.displayInit();
+    this.appSvc.displayInit();
 
     console.log('starting Koa server...');
 
