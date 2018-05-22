@@ -1,10 +1,12 @@
 import {AppService} from 'services/app-service';
+import {KoaApp} from '@mattduffield/koa-browser';
 import {Application} from '../lib/koa-web/application';
 import homePage from '../index.dev.html!text';
 
 
 export class App {
-  static inject = [AppService, Application];
+  // static inject = [AppService, Application];
+  static inject = [AppService, KoaApp];
 
   constructor(appSvc, koa) {
     this.appSvc = appSvc;
