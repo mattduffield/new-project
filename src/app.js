@@ -1,6 +1,6 @@
 import {AppService} from 'services/app-service';
 import {KoaApp} from '@mattduffield/koa-browser';
-import {Application} from '../lib/koa-web/application';
+// import {Application} from '../lib/koa-web/application';
 import homePage from '../index.dev.html!text';
 
 
