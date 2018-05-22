@@ -43,18 +43,6 @@ export class App {
     const reqUrl = new URL(url);
     console.log('reqUrl', reqUrl);
     const req = new Request(url);
-    // console.log(`
-    //   Url: ${req.url}
-    //   Method: ${req.method}
-    //   Protocol: ${req.protocol}
-    //   Origin: ${req.origin}
-    //   Host: ${req.host}
-    //   Hostname: ${req.hostname}
-    //   Path: ${req.path}
-    //   Href: ${req.href}
-    //   QueryString: ${req.querystring}
-    //   Search: ${req.search}
-    // `);
     const res = await handler(req);
     return res;
   }
